@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fuel"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/Lin1"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="410dp"
+            android:layout_height="350dp"
+            android:src="@drawable/logo" />
+
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_below="@+id/Lin1"
+            android:layout_margin="15dp"
+            android:background="@drawable/btn_signin"
+            android:text="Sign In"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_below="@+id/Lin1"
+            android:layout_margin="15dp"
+            android:background="@drawable/btn_register"
+            android:text="Register"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

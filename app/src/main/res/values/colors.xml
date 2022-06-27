@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#474545</color>
+    <color name="colorPrimaryDark">#f58d42</color>
+    <color name="colorAccent">#f5426c</color>
+
+    <color name="colorSignin">#474545</color>
+    <color name="colorRegister">#474545</color>
+    <color name="RippleEffectColor">#474545</color>
+</resources>
