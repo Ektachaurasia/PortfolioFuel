@@ -9,7 +9,6 @@
     android:background="@drawable/fuel"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:textSizes="1sp"
     tools:context=".quotehistory">
 
 

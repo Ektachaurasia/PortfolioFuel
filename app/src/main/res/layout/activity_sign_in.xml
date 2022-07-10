@@ -35,7 +35,7 @@
             android:background="@drawable/edt_bg"
             android:drawableLeft="@drawable/ic_baseline_email_24"
             android:hint="Email"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:padding="10dp"
             android:text=""
             android:textSize="15sp" />
