@@ -1,39 +1,11 @@
 {
   "project_info": {
     "project_number": "182167130689",
+    "firebase_url": "https://portfoliofuelnew-default-rtdb.firebaseio.com",
     "project_id": "portfoliofuelnew",
     "storage_bucket": "portfoliofuelnew.appspot.com"
   },
   "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:182167130689:android:faa8b9d9a5ec0dba58ecc0",
-        "android_client_info": {
-          "package_name": "com.example.portfoliofuel"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "182167130689-86ap9972ahlsotrf5546b4hg0esi9alp.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyA9np_ws32_lJgiGuw7i1qgRTtrJvyaRdo"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "182167130689-86ap9972ahlsotrf5546b4hg0esi9alp.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:182167130689:android:73de40c139747f4858ecc0",
