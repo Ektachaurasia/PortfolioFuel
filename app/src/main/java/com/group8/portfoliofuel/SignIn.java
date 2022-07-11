@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 
 public class SignIn extends AppCompatActivity {
 
-    private EditText mEmail, mPass;
+    private EditText mEmail1, mPass;
     private TextView mTextView,mTextView1;
     private Button signinBtn;
 
@@ -35,7 +35,7 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        mEmail = findViewById(R.id.edtEmail1);
+        mEmail1 = findViewById(R.id.edtEmail1);
         mPass = findViewById(R.id.edtPass);
         mTextView = findViewById(R.id.textView4);
         mTextView1 = findViewById(R.id.edtforgot);
@@ -63,15 +63,15 @@ public class SignIn extends AppCompatActivity {
         });
     }
     private void login() {
-        String Email1 = mEmail.getText().toString();
+        String Email1 = mEmail1.getText().toString();
         String pass1 = mPass.getText().toString();
 
         if (Email1.isEmpty()) {
-            mEmail.setError("Email is required");
+            mEmail1.setError("Email is required");
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(Email1).matches()) {
-            mEmail.setError("Invalid email. Please enter a valid Email");
+            mEmail1.setError("Invalid email. Please enter a valid Email");
         }
         if (pass1.isEmpty()) {
             mPass.setError("Password is required");

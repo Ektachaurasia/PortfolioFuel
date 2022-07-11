@@ -52,14 +52,14 @@
         android:text="Fuel Quote History"
         android:textColor="#ffffff"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegister5"
+        app:layout_constraintBottom_toTopOf="@+id/btnlogout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRegister3" />
 
     <Button
-        android:id="@+id/btnRegister5"
+        android:id="@+id/btnlogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Lin1"
