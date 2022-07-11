@@ -86,6 +86,25 @@ public class profileManag extends AppCompatActivity {
         this.zipCode = zipCode;
     }
 
+    
+ 
+    
+    TextView textView = findViewById(R.id.edtAddress1);
+    //  TextView textView = findViewById(R.id.edtAddress2);
+
+    //for Address, limit character 100
+
+    String Address = textView.getText().toString();
+
+    {
+        // {
+        //   if (Address.length() < 100) ;
+        if (address.length() < 100) {
+            textView.setError("\"Invalid Field:  character limit needs to be 100 \" ");
+        }
+    }
+}
+    
 //address limit and edt button
 
   //  TextView textView = findViewById(R.id.edtAddress1);
