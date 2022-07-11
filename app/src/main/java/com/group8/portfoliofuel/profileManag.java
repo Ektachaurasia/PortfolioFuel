@@ -88,39 +88,66 @@ public class profileManag extends AppCompatActivity {
 
     
  
-    
-    TextView textView = findViewById(R.id.edtAddress1);
-    //  TextView textView = findViewById(R.id.edtAddress2);
+    // for first name character limit is 50
+    TextView textView = findViewById(R.id.edtFirstName);
 
-    //for Address, limit character 100
-
-    String Address = textView.getText().toString();
+    String FirstName = textView.getText().toString();
 
     {
-        // {
-        //   if (Address.length() < 100) ;
-        if (address.length() < 100) {
-            textView.setError("\"Invalid Field:  character limit needs to be 100 \" ");
+        if (firstName.length() < 50) {
+            textView.setError("\"Invalid Field:  character limit needs to be 50 \" ");
         }
     }
+    
+    // for last name character limit is 50
+    TextView textView2 = findViewById(R.id.edtLastName);
+
+    String LastName = textView2.getText().toString();
+
+    {
+        if (lastName.length() < 50) {
+            textView2 .setError("\"Invalid Field:  character limit needs to be 50 \" ");
+        }
+    }
+    
+    // for address the character limit is 100
+     TextView textView3 = findViewById(R.id.edtAddress1);
+    
+    String address1 = textView3.getText().toString();
+
+    {
+        if (address1.length() < 100) {
+            textView3.setError("\"Invalid Field:  character limit needs to be 100 \" ");
+        }
+    }
+
+   //address2 limit and edt button
+
+    TextView textView4 = findViewById(R.id.edtAddress2);
+
+    String address2 = textView4.getText().toString();
+
+    {
+        if (address2.length() < 100) {
+            textView4.setError("\"Invalid Field:  character limit needs to be 100 \" ");
+        }
+    }
+    
+    
+     //city limit and edt button
+
+    TextView textView5 = findViewById(R.id.edtCity);
+
+    String City = textView5.getText().toString();
+
+    {
+        if (city.length() < 100) {
+            textView5.setError("\"Invalid Field:  character limit needs to be 100 \" ");
+        }
+    }
+    
 }
     
-//address limit and edt button
-
-  //  TextView textView = findViewById(R.id.edtAddress1);
- //   TextView textView = findViewById(R.id.edtAddress2);
-
-    //for Addres, limit charater 100
- //   String string = "Address";
-// if(string.length() > 100)
-//}
-
-//for name, limit character 50
-
-//    String string = " name ";
-//if(string.length() > 50)
-
-
     //    }
 
 //for city limit 100 charater
