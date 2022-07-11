@@ -7,4 +7,6 @@
     <color name="colorSignin">#474545</color>
     <color name="colorRegister">#474545</color>
     <color name="RippleEffectColor">#474545</color>
+
+    <color name="colorGreen">#96c896</color>
 </resources>
