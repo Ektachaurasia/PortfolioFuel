@@ -146,59 +146,50 @@ public class profileManag extends AppCompatActivity {
         }
     }
     
+    
+      //city zipcode and edt button
+
+    TextView textView6 = findViewById(R.id.edtZipCode);
+
+    String zipcode = textView6.getText().toString();
+
+    {
+        if (city.length() < 9) {
+            textView6.setError("\"Invalid Field:  character limit needs to be 100 \" ");
+        }
+    }
+    
+    // For the State, we will use spinner for the drop down
+
+        Spinner spinner = findViewById(R.id.Spinner);
+        db.collection("State").document(doc).void collection("Client");
+
+
+    void addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+  @Override
+   public void onComplete(@NonNull Task<QuerySnapshot> task) {
+        if (task.isSuccessful()) {
+        int index = 0;
+        for (QueryDocumentSnapshot document : task.getResult()) {
+        Log.d(TAG, document.getId() + " => " + document.getData());
+       list.add((document.get("name").toString());
+        listOfDocs.add(document.toObject(clientProfileManag.class));
+        }
+        }
+        else {
+        Log.d(TAG, "Error getting documents: ", task.getException());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(State.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list);
+        spinner.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        }
+
+    }
+
+    TextView textView7 = findViewById(R.id.edtcomplete);
+
 }
     
-    //    }
-
-//for city limit 100 charater
-
-     //   String string = "City";
-       // if(string.length() > 100)
-
-
-      //  }
-
-//for state limit 2 charater
-
-      //  String string = "state";
-      //  if(string.length() > 2)
-
-
-      //  }
-
-// For the State, we will use spinner for the drop down
-
-//        Spinner spinner = findViewById(R.id.spinner);
-
-   //     db.collection("State").document(doc).collection("Client")
-   //     .get()
-  //      .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//@Override
-//public void onComplete(@NonNull Task<QuerySnapshot> task) {
-     //   if (task.isSuccessful()) {
-     //   int index = 0;
-      //  for (QueryDocumentSnapshot document : task.getResult()) {
-    //    Log.d(TAG, document.getId() + " => " + document.getData());
-    //    list.add((document.get("name").toString());
-      //  listOfDocs.add(document.toObject(clientProfileManag.class));
-      //  }
-      //  }
-     //   else {
-     //   Log.d(TAG, "Error getting documents: ", task.getException());
-    //    }
-
-    //    ArrayAdapter<String> adapter = new ArrayAdapter<>(State.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list);
-   //     spinner.setAdapter(adapter);
-   //     adapter.notifyDataSetChanged();
-  //      }
-
-
-// for zip code
-
-//{
-
-    //    String string = "zipCode";
-    //    if(string.length() > 5)
- //       }
-
 }
+    
+    
