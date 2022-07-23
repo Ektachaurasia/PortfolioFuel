@@ -176,7 +176,7 @@ public class profileManag extends AppCompatActivity {
     // For the State, we will use spinner for the drop down
 
         Spinner spinner = findViewById(R.id.Spinner);
-        db.collection("State").document(doc).void collection("Client");
+        db.collection("ClientInformation").document(doc).void collection("State");
 
 
     void addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -186,8 +186,8 @@ public class profileManag extends AppCompatActivity {
         int index = 0;
         for (QueryDocumentSnapshot document : task.getResult()) {
         Log.d(TAG, document.getId() + " => " + document.getData());
-       list.add((document.get("name").toString());
-        listOfDocs.add(document.toObject(clientProfileManag.class));
+       list.add((document.get("State").toString());
+        listOfDocs.add(document.toObject(profileManag.class));
         }
         }
         else {
