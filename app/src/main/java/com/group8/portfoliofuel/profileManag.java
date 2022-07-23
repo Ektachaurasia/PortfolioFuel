@@ -120,7 +120,57 @@ public class profileManag extends AppCompatActivity {
                 Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });*/
+// For the State, we will use spinner for the drop down
 
+
+
+/* Spinner spinner = findViewById(R.id.Spinner);
+
+db.collection("ClientInformation").document(doc).void collection("State");
+
+
+
+
+
+void addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+@Override
+
+public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+if (task.isSuccessful()) {
+
+int index = 0;
+
+for (QueryDocumentSnapshot document : task.getResult()) {
+
+Log.d(TAG, document.getId() + " => " + document.getData());
+
+list.add((document.get("State").toString());
+
+listOfDocs.add(document.toObject(profileManag.class));
+
+}
+
+}
+
+else {
+
+Log.d(TAG, "Error getting documents: ", task.getException());
+
+}
+
+ArrayAdapter<String> adapter = new ArrayAdapter<>(State.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list);
+
+spinner.setAdapter(adapter);
+
+adapter.notifyDataSetChanged();
+
+} */
+
+
+
+}
     }
 }
     
