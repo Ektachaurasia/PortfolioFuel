@@ -43,7 +43,7 @@ public class profileManag extends AppCompatActivity {
         address = findViewById(R.id.edtAddress1);
         unitNo = findViewById(R.id.edtAddress2);
         city = findViewById(R.id.edtCity);
-        state = findViewById(R.id.Spinner);
+        //state = findViewById(R.id.Spinner);
         zipCode= findViewById(R.id.ZipCode);
 
         completeRegbtn = findViewById(R.id.edtcomplete);
@@ -97,7 +97,7 @@ public class profileManag extends AppCompatActivity {
 
 //Data is validated
 //Register the user using firebase
-        Toast.makeText(Register.this,"Data validated", Toast.LENGTH_SHORT).show();
+        /*Toast.makeText(Register.this,"Data validated", Toast.LENGTH_SHORT).show();
         mAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
@@ -119,7 +119,7 @@ public class profileManag extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
     }
 }
