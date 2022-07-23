@@ -175,7 +175,7 @@ public class profileManag extends AppCompatActivity {
     
     // For the State, we will use spinner for the drop down
 
-        Spinner spinner = findViewById(R.id.Spinner);
+/*        Spinner spinner = findViewById(R.id.Spinner);
         db.collection("ClientInformation").document(doc).void collection("State");
 
 
@@ -196,7 +196,7 @@ public class profileManag extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(State.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list);
         spinner.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        }
+        } */
 
     }
 
