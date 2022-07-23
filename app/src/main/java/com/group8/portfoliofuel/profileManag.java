@@ -101,7 +101,7 @@ public class profileManag extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                Toast.makeText(Register.this, "Registered Successfully !!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(profileManag.this, "Registered Successfully !!", Toast.LENGTH_SHORT).show();
                 FirebaseUser firebaseUser = mAuth.getCurrentUser();
 
                 //Send Verification Email
