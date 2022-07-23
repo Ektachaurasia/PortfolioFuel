@@ -46,7 +46,7 @@ public class SignIn extends AppCompatActivity {
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignIn.this, Register.class));
+                startActivity(new Intent(SignIn.this, profileManag.class));
             }
         });
         mTextView1.setOnClickListener(new View.OnClickListener() {
