@@ -16,6 +16,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.widget.Spinner;
@@ -25,7 +28,7 @@ public class profileManag extends AppCompatActivity {
 
     private EditText firstNameedt, lastNameedt, addressedt, unitNoedt, cityedt, stateedt, zipCodeedt;
     private Button completeRegbtn;
-    private String firstName, lastName, address, unitNo, city, state, zipCode;
+    private String firstName, lastName, address, unitNo, city, state, zipCode; 
     // creating a variable
     // for firebasefirestore.
     private FirebaseFirestore db;
