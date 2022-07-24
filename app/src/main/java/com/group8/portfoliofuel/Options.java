@@ -30,7 +30,8 @@ public class Options extends AppCompatActivity {
         profileManag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Options.this, profileManag.class));
+                Intent profileManag = new Intent(Options.this, profileManag.class);
+                startActivity(profileManag);
             }
         });
 
@@ -38,7 +39,8 @@ public class Options extends AppCompatActivity {
         fuelForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Options.this, fuelForm.class));
+                   Intent fuelForm = new Intent(Options.this, fuelForm.class);
+                startActivity(fuelForm);
             }
         });
 
@@ -47,7 +49,8 @@ public class Options extends AppCompatActivity {
         quotehistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Options.this, quotehistory.class));
+                   Intent quotehistory = new Intent(Options.this, quotehistory.class);
+                startActivity(quotehistory);
             }
         });
 
@@ -57,7 +60,6 @@ public class Options extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent logOut = new Intent(Options.this, MainActivity.class);
-
                 startActivity(logOut);
             }
         });

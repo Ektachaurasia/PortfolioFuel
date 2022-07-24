@@ -1,26 +1,24 @@
 package com.group8.portfoliofuel;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.widget.Spinner;
@@ -28,27 +26,30 @@ import android.widget.Spinner;
 
 public class profileManag extends AppCompatActivity {
 
-    private EditText firstName, lastName, address, unitNo, city, state, zipCode;
+    private EditText firstNameedt, lastNameedt, addressedt, unitNoedt, cityedt, stateedt, zipCodeedt;
     private Button completeRegbtn;
+    private String firstName, lastName, address, unitNo, city, state, zipCode; 
+    // creating a variable
+    // for firebasefirestore.
+    private FirebaseFirestore db;
 
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profilemanag);
 
-        firstName = findViewById(R.id.edtFirstName);
-        lastName = findViewById(R.id.edtLastName);
-        address = findViewById(R.id.edtAddress1);
-        unitNo = findViewById(R.id.edtAddress2);
-        city = findViewById(R.id.edtCity);
-        //state = findViewById(R.id.Spinner);
-        zipCode= findViewById(R.id.ZipCode);
+        db = FirebaseFirestore.getInstance();
+        firstNameedt = findViewById(R.id.edtFirstName);
+        lastNameedt = findViewById(R.id.edtLastName);
+        addressedt = findViewById(R.id.edtAddress1);
+        unitNoedt = findViewById(R.id.edtAddress2);
+        cityedt = findViewById(R.id.edtCity);
+        stateedt = findViewById(R.id.Spinner);
+        zipCodeedt = findViewById(R.id.ZipCode);
 
         completeRegbtn = findViewById(R.id.edtcomplete);
 
-        mAuth = FirebaseAuth.getInstance();
 
         completeRegbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,118 +60,63 @@ public class profileManag extends AppCompatActivity {
     }
 
     private void createUser() { //extract the data from the form
-        String firstname = firstName.getText().toString();
-        String lastname = lastName.getText().toString();
-        String address1 = address.getText().toString();
-        String address2 = unitNo.getText().toString();
-        String mcity = city.getText().toString();
-        String mstate = state.getText().toString();
-        String mzipcode = zipCode.getText().toString();
+        String firstname = firstNameedt.getText().toString();
+        String lastname = lastNameedt.getText().toString();
+        String address1 = addressedt.getText().toString();
+        String address2 = unitNoedt.getText().toString();
+        String mcity = cityedt.getText().toString();
+        String mstate = stateedt.getText().toString();
+        String mzipcode = zipCodeedt.getText().toString();
 
 
         if (firstname.length() < 50) {
-            firstName.setError("Invalid Field: character limit needs to be 50");
+            firstNameedt.setError("Invalid Field: character limit needs to be 50");
             return;
-        }
-        if (lastname.length() < 50 ) {
-            firstName.setError("Invalid Field: character limit needs to be 50");
+        } else if (lastname.length() < 50) {
+            firstNameedt.setError("Invalid Field: character limit needs to be 50");
             return;
-        }
-        if (address1.length() < 100) {
-            address.setError("Invalid Field: character limit needs to be 100");
+        } else if (address1.length() < 100) {
+            addressedt.setError("Invalid Field: character limit needs to be 100");
             return;
-        }
-        if (address2.length() < 100) {
-            unitNo.setError("Invalid Field: character limit needs to be 100");
+        } else if (address2.length() < 100) {
+            unitNoedt.setError("Invalid Field: character limit needs to be 100");
             return;
-        }
-        if (mcity.length() < 100) {
-            city.setError("Invalid Field: character limit needs to be 100");
+        } else if (mcity.length() < 100) {
+            cityedt.setError("Invalid Field: character limit needs to be 100");
             return;
-        }
-        if (mzipcode.length() < 9) {
-            zipCode.setError("Invalid Field: character limit needs to be 9");
+        } else if (mzipcode.length() < 9) {
+            zipCodeedt.setError("Invalid Field: character limit needs to be 9");
             return;
-        }
+        } else
+            // calling method to add data to Firebase Firestore.
+            Toast.makeText(profileManag.this, "Data validated", Toast.LENGTH_SHORT).show();
+        addDataToFirestore(firstname, lastname, address1, address2, mcity, mstate, mzipcode);
+    }
 
+    void addDataToFirestore(String fn, String ls, String add1, String add2, String cty, String st, String zip) {
 
+        // creating a collection reference
+        // for our Firebase Firetore database.
+        CollectionReference dbprofile = db.collection("profile");
 
-//Data is validated
-//Register the user using firebase
-        /*Toast.makeText(Register.this,"Data validated", Toast.LENGTH_SHORT).show();
-        mAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+        // adding our data to our courses object class.
+        profile profile = new profile(firstName, lastName, address, unitNo, city, state, zipCode);
+
+        // below method is use to add data to Firebase Firestore.
+        dbprofile.add(profile).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
-            public void onSuccess(AuthResult authResult) {
-                Toast.makeText(profileManag.this, "Registered Successfully !!", Toast.LENGTH_SHORT).show();
-                FirebaseUser firebaseUser = mAuth.getCurrentUser();
-
-                //Send Verification Email
-                firebaseUser.sendEmailVerification();
-
-                //Open user Profile after successful
-                Intent intent = new Intent(Register.this, Email_verification.class);
-                //To prevent user from returning back to register activity on pressing bcak button after registration
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
+            public void onSuccess(DocumentReference documentReference) {
+                // after the data addition is successful
+                // we are displaying a success toast message.
+                Toast.makeText(profileManag.this, "Your profile has been added to Firebase Firestore", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                // this method is called when the data addition process is failed.
+                // displaying a toast message when data addition is failed.
+                Toast.makeText(profileManag.this, "Fail to add profile \n" + e, Toast.LENGTH_SHORT).show();
             }
-        });*/
-// For the State, we will use spinner for the drop down
-
-
-
-/* Spinner spinner = findViewById(R.id.Spinner);
-
-db.collection("ClientInformation").document(doc).void collection("State");
-
-
-
-
-
-void addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-
-@Override
-
-public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-if (task.isSuccessful()) {
-
-int index = 0;
-
-for (QueryDocumentSnapshot document : task.getResult()) {
-
-Log.d(TAG, document.getId() + " => " + document.getData());
-
-list.add((document.get("State").toString());
-
-listOfDocs.add(document.toObject(profileManag.class));
-
-}
-
-}
-
-else {
-
-Log.d(TAG, "Error getting documents: ", task.getException());
-
-}
-
-ArrayAdapter<String> adapter = new ArrayAdapter<>(State.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list);
-
-spinner.setAdapter(adapter);
-
-adapter.notifyDataSetChanged();
-
-} */
-
-
-
-}
+        });
     }
 }
-    

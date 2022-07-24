@@ -78,7 +78,7 @@
             android:textSize="15sp" />
 
 
-        <Spinner
+        <EditText
             android:id="@+id/Spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

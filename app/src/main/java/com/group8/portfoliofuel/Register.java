@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -83,8 +84,7 @@ public class Register extends AppCompatActivity {
             mPass.setError("Password is required");
             return;
         }if (password.length()<8 && !isValidPassword(password)){
-            mPass.setError("\"Invalid password. Enter at least one of the following: uppercase,lower case,\" +\n" +
-                    "\"special character, number. Password length must be least eight characters\" ");
+            mPass.setError("Password length must be least eight characters ");
             return;
         }
         if (confpass.isEmpty()) {
@@ -102,7 +102,16 @@ public class Register extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(Register.this, "Registered Successfully !!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),SignIn.class));
+                FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+                //Send Verification Email
+                firebaseUser.sendEmailVerification();
+
+                //Open user Profile after successful
+                Intent intent = new Intent(Register.this, Email_verification.class);
+                //To prevent user from returning back to register activity on pressing bcak button after registration
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
