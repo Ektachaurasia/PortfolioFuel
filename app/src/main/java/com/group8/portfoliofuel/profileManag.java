@@ -1,209 +1,119 @@
 package com.group8.portfoliofuel;
 
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Spinner;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.common.base.MoreObjects;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import android.widget.Spinner;
+
+
 public class profileManag extends AppCompatActivity {
 
+    private EditText firstNameedt, lastNameedt, addressedt, unitNoedt, cityedt, stateedt, zipCodeedt;
+    private Button completeRegbtn;
+    private String firstName, lastName, address, unitNo, city, state, zipCode;
+    // creating a variable
+    // for firebasefirestore.
+    private FirebaseFirestore db;
 
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String unitNumber = null;
-    private String city;
-    private String state;
-    private String zipCode;
 
-    public profileManag() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.profilemanag);
 
+        db = FirebaseFirestore.getInstance();
+        firstNameedt = findViewById(R.id.edtFirstName);
+        lastNameedt = findViewById(R.id.edtLastName);
+        addressedt = findViewById(R.id.edtAddress1);
+        unitNoedt = findViewById(R.id.edtAddress2);
+        cityedt = findViewById(R.id.edtCity);
+        stateedt = findViewById(R.id.Spinner);
+        zipCodeedt = findViewById(R.id.ZipCode);
+
+        completeRegbtn = findViewById(R.id.edtcomplete);
+
+
+        completeRegbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createUser();
+            }
+        });
     }
 
-    public String getFirstName() {
-        return firstName;
+    private void createUser() { //extract the data from the form
+        String firstname = firstNameedt.getText().toString();
+        String lastname = lastNameedt.getText().toString();
+        String address1 = addressedt.getText().toString();
+        String address2 = unitNoedt.getText().toString();
+        String mcity = cityedt.getText().toString();
+        String mstate = stateedt.getText().toString();
+        String mzipcode = zipCodeedt.getText().toString();
+
+
+        if (firstname.length() < 50) {
+            firstNameedt.setError("Invalid Field: character limit needs to be 50");
+            return;
+        } else if (lastname.length() < 50) {
+            firstNameedt.setError("Invalid Field: character limit needs to be 50");
+            return;
+        } else if (address1.length() < 100) {
+            addressedt.setError("Invalid Field: character limit needs to be 100");
+            return;
+        } else if (address2.length() < 100) {
+            unitNoedt.setError("Invalid Field: character limit needs to be 100");
+            return;
+        } else if (mcity.length() < 100) {
+            cityedt.setError("Invalid Field: character limit needs to be 100");
+            return;
+        } else if (mzipcode.length() < 9) {
+            zipCodeedt.setError("Invalid Field: character limit needs to be 9");
+            return;
+        } else
+            // calling method to add data to Firebase Firestore.
+            Toast.makeText(profileManag.this, "Data validated", Toast.LENGTH_SHORT).show();
+        addDataToFirestore(firstname, lastname, address1, address2, mcity, mstate, mzipcode);
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;   
-         }
-    public String getLastName() {
-        return lastName;
+    void addDataToFirestore(String fn, String ls, String add1, String add2, String cty, String st, String zip) {
+
+        // creating a collection reference
+        // for our Firebase Firetore database.
+        CollectionReference dbprofile = db.collection("profile");
+
+        // adding our data to our courses object class.
+        profile profile = new profile(firstName, lastName, address, unitNo, city, state, zipCode);
+
+        // below method is use to add data to Firebase Firestore.
+        dbprofile.add(profile).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                // after the data addition is successful
+                // we are displaying a success toast message.
+                Toast.makeText(profileManag.this, "Your profile has been added to Firebase Firestore", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // this method is called when the data addition process is failed.
+                // displaying a toast message when data addition is failed.
+                Toast.makeText(profileManag.this, "Fail to add profile \n" + e, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getUnitNumber() {
-        return unitNumber;
-    }
-
-    public void setUnitNumber(String unitNumber) {
-        this.unitNumber = unitNumber;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    
- 
-    // for first name character limit is 50
-    TextView textView = findViewById(R.id.edtFirstName);
-
-    String FirstName = textView.getText().toString();
-
-    {
-        if (firstName.length() < 50) {
-            textView.setError("\"Invalid Field:  character limit needs to be 50 \" ");
-        }
-    }
-    
-    // for last name character limit is 50
-    TextView textView2 = findViewById(R.id.edtLastName);
-
-    String LastName = textView2.getText().toString();
-
-    {
-        if (lastName.length() < 50) {
-            textView2 .setError("\"Invalid Field:  character limit needs to be 50 \" ");
-        }
-    }
-    
-    // for address the character limit is 100
-     TextView textView3 = findViewById(R.id.edtAddress1);
-    
-    String address1 = textView3.getText().toString();
-
-    {
-        if (address1.length() < 100) {
-            textView3.setError("\"Invalid Field:  character limit needs to be 100 \" ");
-        }
-    }
-
-   //address2 limit and edt button
-
-    TextView textView4 = findViewById(R.id.edtAddress2);
-
-    String address2 = textView4.getText().toString();
-
-    {
-        if (address2.length() < 100) {
-            textView4.setError("\"Invalid Field:  character limit needs to be 100 \" ");
-        }
-    }
-    
-    
-     //city limit and edt button
-
-    TextView textView5 = findViewById(R.id.edtCity);
-
-    String City = textView5.getText().toString();
-
-    {
-        if (city.length() < 100) {
-            textView5.setError("\"Invalid Field:  character limit needs to be 100 \" ");
-        }
-    }
-    
-    
-      //city zipcode and edt button
-
-    TextView textView6 = findViewById(R.id.edtZipCode);
-
-    String zipcode = textView6.getText().toString();
-
-    {
-        if (city.length() < 9) {
-            textView6.setError("\"Invalid Field:  character limit needs to be 100 \" ");
-        }
-    }
-    
-    // For the State, we will use spinner for the drop down
-
-/*        Spinner spinner = findViewById(R.id.Spinner);
-        db.collection("ClientInformation").document(doc).void collection("State");
-
-
-    void addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-  @Override
-   public void onComplete(@NonNull Task<QuerySnapshot> task) {
-        if (task.isSuccessful()) {
-        int index = 0;
-        for (QueryDocumentSnapshot document : task.getResult()) {
-        Log.d(TAG, document.getId() + " => " + document.getData());
-       list.add((document.get("State").toString());
-        listOfDocs.add(document.toObject(profileManag.class));
-        }
-        }
-        else {
-        Log.d(TAG, "Error getting documents: ", task.getException());
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(State.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list);
-        spinner.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        } */
-
-    }
-
-    TextView textView7 = findViewById(R.id.edtcomplete);
-
 }
-    
-}
-    
-    
