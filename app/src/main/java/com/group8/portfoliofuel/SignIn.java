@@ -78,7 +78,7 @@ public class SignIn extends AppCompatActivity {
             return;
         }
 //Data is validated
-//Register the user using firebase
+//SignIn the user using firebase
         mAuth.signInWithEmailAndPassword(Email1,pass1).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
