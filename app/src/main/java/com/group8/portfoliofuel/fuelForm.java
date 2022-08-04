@@ -77,7 +77,7 @@ courseDurationEdt.setError("Please enter Course Duration");
         });
     }  */
 
-                private void addDataToFirestore(String GallonsRequested, String DeliveryAddress, String; DeliveryDate, String SuggestedPrice, String TotalAmount ){
+             //   private void addDataToFirestore(String; GallonsRequested, String; DeliveryAddress, String; DeliveryDate, String SuggestedPrice, String TotalAmount ){
 
                     // creating a collection reference
                     // for our Firebase Firetore database.
@@ -88,7 +88,7 @@ courseDurationEdt.setError("Please enter Course Duration");
 
                     // below method is use to add data to Firebase Firestore.
                     dbCourses.add(fuelForm.this).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override1
+                        @Override
                         public void onSuccess(DocumentReference documentReference) {
                             // after the data addition is successful
                             // we are displaying a success toast message.
@@ -102,7 +102,6 @@ courseDurationEdt.setError("Please enter Course Duration");
                         }
                     });
                 }
-            }
-        });
+            });
+        }
     }
-}
