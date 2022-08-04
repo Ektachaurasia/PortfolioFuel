@@ -5,12 +5,17 @@
       <map>
         <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/activity_email_verification.xml" value="0.2" />
         <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/activity_forgot_password.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/activity_login.xml" value="0.15364583333333334" />
         <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/activity_options.xml" value="0.18020833333333333" />
         <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/activity_quotehistory.xml" value="0.16802536231884058" />
         <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/activity_sign_in.xml" value="0.176" />
+        <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/content_login.xml" value="0.12364130434782608" />
+        <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/fragment_first.xml" value="0.12364130434782608" />
         <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/fragment_second.xml" value="0.16802536231884058" />
+        <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/fuelform.xml" value="0.23097826086956522" />
+        <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/login.xml" value="0.15364583333333334" />
         <entry key="..\:/Users/echauras/Downloads/03282022/PortfolioFuel-master/app/src/main/res/layout/profilemanag.xml" value="0.1" />
       </map>
     </option>

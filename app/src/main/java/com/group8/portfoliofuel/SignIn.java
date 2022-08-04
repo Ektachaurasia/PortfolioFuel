@@ -3,6 +3,7 @@ package com.group8.portfoliofuel;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -29,6 +30,7 @@ public class SignIn extends AppCompatActivity {
     private Button signinBtn;
 
     private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +85,7 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(SignIn.this, "Log In Successfully !!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),Email_verification.class));
+                startActivity(new Intent(getApplicationContext(),Options.class));
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {

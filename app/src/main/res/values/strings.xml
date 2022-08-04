@@ -30,4 +30,5 @@
     <string name="row3DD">11/11/2021</string>
     <string name="row3SP">$2000</string>
     <string name="row3TA">$2750</string>
+    <string name="title_activity_login">Login</string>
 </resources>

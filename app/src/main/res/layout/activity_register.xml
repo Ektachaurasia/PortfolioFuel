@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edt_bg"
             android:drawableLeft="@drawable/ic_baseline_person_24"
-            android:hint="Name"
+            android:hint="Full Name"
             android:inputType="textPersonName"
             android:padding="10dp"
             android:text=""

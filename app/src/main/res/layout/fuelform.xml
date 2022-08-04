@@ -24,16 +24,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
-        android:hint="GallonsRequested"
-        />
+        android:hint="GallonsRequested" />
 
     <EditText
         android:id="@+id/deliveryAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="DeliveryAddress"
         android:layout_marginTop="280dp"
-        />
+        android:hint="DeliveryAddress" />
     <EditText
         android:id="@+id/deliveryDate"
         android:layout_width="match_parent"
@@ -48,13 +46,13 @@
         android:hint="SuggestedPrice"
         android:layout_marginTop="480dp"
         />
+
     <EditText
         android:id="@+id/totalAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="TotalAmount"
         android:layout_marginTop="580dp"
-        />
+        android:hint="TotalAmount" />
     <Button
         android:id="@+id/SubmitForm"
         android:layout_width="match_parent"
