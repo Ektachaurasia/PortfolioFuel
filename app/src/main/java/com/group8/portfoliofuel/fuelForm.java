@@ -85,10 +85,10 @@ courseDurationEdt.setError("Please enter Course Duration");
                     CollectionReference dbCourses = db.collection("fuelForm");
 
                     // adding our data to our form object class.
-                    FuelForm fuelForm = new FuelForm(GallonsRequested, DeliveryAddress, DeliveryDate, SuggestedPrice, TotalAmount);
+                    FuelForm Fuel = new FuelForm(GallonsRequested, DeliveryAddress, DeliveryDate, SuggestedPrice, TotalAmount);
 
                     // below method is use to add data to Firebase Firestore.
-                    dbCourses.add(fuelForm).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    dbCourses.add(fuelForm.this).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             // after the data addition is successful

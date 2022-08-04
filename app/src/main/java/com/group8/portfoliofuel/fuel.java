@@ -5,7 +5,8 @@ package com.group8.portfoliofuel;
  
     // variables for storing our data.
     private String GallonsRequested, DeliveryAddress, DeliveryDate, SuggestedPrice, TotalAmount;
- 
+
+
     public Fuel() {
         // empty constructor
         // required for Firebase.
