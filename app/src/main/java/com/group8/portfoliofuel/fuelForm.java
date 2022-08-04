@@ -1,3 +1,5 @@
+package com.group8.portfoliofuel;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -32,18 +34,18 @@ public class fuelForm extends AppCompatActivity {
 @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fuelForm);
+        setContentView(R.layout.activity_fuelform);
  
         // getting our instance
         // from Firebase Firestore.
         db = FirebaseFirestore.getInstance();
  
         // initializing our edittext and buttons
-        GallonsRequestedEdt = findViewById(R.id.GallonsRequested);
-        DeliveryAddressEdt = findViewById(R.id.DeliveryAddress);
-        DeliveryDateEdt = findViewById(R.id.DeliveryDate);
-        SuggestedPriceEdt = findViewById(R.id.SuggestedPrice);
-        TotalAmountEdt = findViewById(R.id.TotalAmount);
+        GallonsRequestedEdt = findViewById(R.id.gallonsRequested);
+        DeliveryAddressEdt = findViewById(R.id.deliveryAddress);
+        DeliveryDateEdt = findViewById(R.id.deliveryDate);
+        SuggestedPriceEdt = findViewById(R.id.suggestedPrice);
+        TotalAmountEdt = findViewById(R.id.totalAmount);
         SubmitFormBtn = findViewById(R.id.Submitform);
  
         // adding on click listener for button

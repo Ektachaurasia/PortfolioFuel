@@ -1,7 +1,7 @@
 package com.group8.portfoliofuel;
          
          
-         public class Fuel {
+         class Fuel {
  
     // variables for storing our data.
     private String GallonsRequested, DeliveryAddress, DeliveryDate, SuggestedPrice, TotalAmount;
@@ -12,7 +12,7 @@ package com.group8.portfoliofuel;
     }
  
     // Constructor for all variables.
-    public Courses(String GallonsRequested, String DeliveryAddress, String DeliveryDate, String SuggestedPrice, String TotalAmount) {
+    public void Courses(String GallonsRequested, String DeliveryAddress, String DeliveryDate, String SuggestedPrice, String TotalAmount) {
         this.GallonsRequested = GallonsRequested;
         this.DeliveryAddress = DeliveryAddress;
         this.DeliveryDate = DeliveryDate;
