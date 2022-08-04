@@ -11,8 +11,11 @@ package com.group8.portfoliofuel;
         // empty constructor
         // required for Firebase.
     }
- 
-    // Constructor for all variables.
+
+             public Fuel(String gallonsRequested, String deliveryAddress, String deliveryDate, String suggestedPrice, String totalAmount) {
+             }
+
+             // Constructor for all variables.
     public void Courses(String GallonsRequested, String DeliveryAddress, String DeliveryDate, String SuggestedPrice, String TotalAmount) {
         this.GallonsRequested = GallonsRequested;
         this.DeliveryAddress = DeliveryAddress;
@@ -61,5 +64,3 @@ package com.group8.portfoliofuel;
         this.TotalAmount = TotalAmount;
     }
 }
-
-
