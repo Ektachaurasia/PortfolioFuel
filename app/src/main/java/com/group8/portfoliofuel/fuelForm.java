@@ -77,6 +77,20 @@ public class Fuel {
     public void setDeliveryDate(String deliveryDate) {
         this.DeliveryDate = DeliveryDate;
     }
+    public String getSuggestedPrice() {
+        return SuggestedPrice;
+    }
+ 
+    public void setSuggestedPrice(String suggestedPrice) {
+        this.SuggestedPrice = SuggestedPrice;
+    }
+    public String getTotalAmount() {
+        return TotalAmount;
+    }
+ 
+    public void setTotalAmount(String totalAmount) {
+        this.TotalAmount = TotalAmount;
+    }
 }
 
 
