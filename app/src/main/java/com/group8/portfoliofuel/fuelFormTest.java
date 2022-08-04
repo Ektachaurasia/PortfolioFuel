@@ -16,7 +16,7 @@ public class fuelFormTest {
 	- Suggested Price / gallon (numeric non-editable, price will be calculated by Pricing Module - we are not building pricing module yet)
 	- Total Amount Due (numeric non-editable, calculated (gallons * price))
      */
-        private fuelForm FuelForm = new fuelForm();
+        private Fuel FuelForm = new Fuel();
     @Test(expected = IllegalArgumentException.class)
     public void sum_shouldThrowForNullParam() throws Exception {
         FuelForm.getGallonsRequested();
