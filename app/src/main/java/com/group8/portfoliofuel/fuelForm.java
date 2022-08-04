@@ -1,61 +1,109 @@
 package com.group8.portfoliofuel;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.Toast;
+ 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+ 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+ 
 public class fuelForm extends AppCompatActivity {
 
+    // creating variables for our edit text
+    private EditText GallonsRequestedEdt, DeliveryAddressEdt, DeliveryDateEdt, SuggestedPriceEdt, TotalAmountEdt;
 
-    private String gallonsRequested;
-    private String deliveryAddress;
-    private String deliveryDate;
-    private String suggestedPrice;
-    private String totalAmount;
+    // creating variable for button
+    private Button SubmitForm;
 
-    public fuelForm() {
+    // creating a strings for storing
+    // our values from edittext fields.
+    private String GallonsRequested, DeliveryAddress, DeliveryDate, SuggestedPrice, TotalAmount;
 
-    }
+    // creating a variable
+    // for firebasefirestore.
+    private FirebaseFirestore db;
 
-    public String getGallonsRequested() {
-        return gallonsRequested;
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_fuelform);
 
-    public void setGallonsRequested(String gallonsRequested) {
-        this.gallonsRequested = gallonsRequested;
-         }
+        // getting our instance
+        // from Firebase Firestore.
+        db = FirebaseFirestore.getInstance();
 
-    public String getDeliveryAddress() {
-        return deliveryAddress;
-    }
+        // initializing our edittext and buttons
+        GallonsRequestedEdt = findViewById(R.id.gallonsRequested);
+        DeliveryAddressEdt = findViewById(R.id.deliveryAddress);
+        DeliveryDateEdt = findViewById(R.id.deliveryDate);
+        SuggestedPriceEdt = findViewById(R.id.suggestedPrice);
+        TotalAmountEdt = findViewById(R.id.totalAmount);
+        SubmitFormBtn = findViewById(R.id.Submitform);
 
-    public void setDeliveryAddress(String deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
-    }
+        // adding on click listener for button
+        submitCourseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    public String getDeliveryDate() {
-        return deliveryDate;
-    }
+                // getting data from edittext fields.
+                GallonsRequested = GallonsRequestedEdt.getText().toString();
+                DeliveryAddress = DeliveryAddressEdt.getText().toString();
+                DeliveryDate = DeliveryDateEdt.getText().toString();
+                SuggestedPrice = SuggestedPriceEdt.getText().toString();
+                TotalAmount = TotalAmountEdt.getText().toString();
+                
+ /*
+                // validating the text fields if empty or not.
+                if (TextUtils.isEmpty(courseName)) {
+                    courseNameEdt.setError("Please enter Course Name");
+                } else if (TextUtils.isEmpty(courseDescription)) {
+                    courseDescriptionEdt.setError("Please enter Course Description");
+                } else if (TextUtils.isEmpty(courseDuration)) {
+courseDurationEdt.setError("Please enter Course Duration");
+                } else {
+                    // calling method to add data to Firebase Firestore.
+                    addDataToFirestore(courseName, courseDescription, courseDuration);
+                }
+            }
+        });
+    }  */
 
-    public void setDeliveryDate(String deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
+                private void addDataToFirestore (String GallonsRequested, String
+                DeliveryAddress, String DeliveryDate, String SuggestedPrice, String TotalAmount ){
 
-    public String getSuggestedPrice() {
-        return suggestedPrice;
-    }
+                    // creating a collection reference
+                    // for our Firebase Firetore database.
+                    CollectionReference dbCourses = db.collection("fuelForm");
 
-    public void setSuggestedPrice(String suggestedPrice) {
-        this.suggestedPrice = suggestedPrice;
-    }
+                    // adding our data to our form object class.
+                    FuelForm Fuel = new FuelForm(GallonsRequested, DeliveryAddress, DeliveryDate, SuggestedPrice, TotalAmount);
 
-    public String getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(String totalAmount) {
-        this.totalAmount = totalAmount;
+                    // below method is use to add data to Firebase Firestore.
+                    dbCourses.add(fuelForm.this).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            // after the data addition is successful
+                            // we are displaying a success toast message.
+                            Toast.makeText(fuelForm.this, "Your form has been added to Firebase Firestore", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) { // this method is called when the data addition process is failed.
+                            // displaying a toast message when data addition is failed.
+                            Toast.makeText(fuelForm.this, "Fail to add course \n" + e, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
     }
 }
