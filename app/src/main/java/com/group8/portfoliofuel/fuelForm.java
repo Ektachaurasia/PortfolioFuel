@@ -17,29 +17,30 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
  
 public class fuelForm extends AppCompatActivity {
- 
+
     // creating variables for our edit text
-    private EditText GallonsRequestedEdt, DeliveryAddressEdt, DeliveryDateEdt, SuggestedPriceEdt, TotalAmountEdt ;
- 
+    private EditText GallonsRequestedEdt, DeliveryAddressEdt, DeliveryDateEdt, SuggestedPriceEdt, TotalAmountEdt;
+
     // creating variable for button
     private Button SubmitForm;
- 
+
     // creating a strings for storing
     // our values from edittext fields.
-    private String GallonsRequested, DeliveryAddress, DeliveryDate, SuggestedPrice, TotalAmount ;
- 
+    private String GallonsRequested, DeliveryAddress, DeliveryDate, SuggestedPrice, TotalAmount;
+
     // creating a variable
     // for firebasefirestore.
     private FirebaseFirestore db;
-@Override
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuelform);
- 
+
         // getting our instance
         // from Firebase Firestore.
         db = FirebaseFirestore.getInstance();
- 
+
         // initializing our edittext and buttons
         GallonsRequestedEdt = findViewById(R.id.gallonsRequested);
         DeliveryAddressEdt = findViewById(R.id.deliveryAddress);
@@ -47,12 +48,12 @@ public class fuelForm extends AppCompatActivity {
         SuggestedPriceEdt = findViewById(R.id.suggestedPrice);
         TotalAmountEdt = findViewById(R.id.totalAmount);
         SubmitFormBtn = findViewById(R.id.Submitform);
- 
+
         // adding on click listener for button
         submitCourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
- 
+
                 // getting data from edittext fields.
                 GallonsRequested = GallonsRequestedEdt.getText().toString();
                 DeliveryAddress = DeliveryAddressEdt.getText().toString();
@@ -75,29 +76,33 @@ courseDurationEdt.setError("Please enter Course Duration");
             }
         });
     }  */
- 
-    private void addDataToFirestore(String GallonsRequested, String DeliveryAddress, String DeliveryDate, String SuggestedPrice, String TotalAmount ) {
- 
-        // creating a collection reference
-        // for our Firebase Firetore database.
-        CollectionReference dbCourses = db.collection("fuelForm");
- 
-        // adding our data to our form object class.
-        FuelForm fuelForm = new FuelForm(GallonsRequested, DeliveryAddress, DeliveryDate, SuggestedPrice, TotalAmount);
- 
-        // below method is use to add data to Firebase Firestore.
-        dbCourses.add(fuelForm).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                // after the data addition is successful
-                // we are displaying a success toast message.
-                Toast.makeText(fuelForm.this, "Your form has been added to Firebase Firestore", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) { // this method is called when the data addition process is failed.
-                // displaying a toast message when data addition is failed.
-                Toast.makeText(fuelForm.this, "Fail to add course \n" + e, Toast.LENGTH_SHORT).show();
+
+                private void addDataToFirestore (String GallonsRequested, String
+                DeliveryAddress, String DeliveryDate, String SuggestedPrice, String TotalAmount ){
+
+                    // creating a collection reference
+                    // for our Firebase Firetore database.
+                    CollectionReference dbCourses = db.collection("fuelForm");
+
+                    // adding our data to our form object class.
+                    FuelForm fuelForm = new FuelForm(GallonsRequested, DeliveryAddress, DeliveryDate, SuggestedPrice, TotalAmount);
+
+                    // below method is use to add data to Firebase Firestore.
+                    dbCourses.add(fuelForm).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            // after the data addition is successful
+                            // we are displaying a success toast message.
+                            Toast.makeText(fuelForm.this, "Your form has been added to Firebase Firestore", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) { // this method is called when the data addition process is failed.
+                            // displaying a toast message when data addition is failed.
+                            Toast.makeText(fuelForm.this, "Fail to add course \n" + e, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
     }
