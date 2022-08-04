@@ -8,8 +8,32 @@ import android.widget.EditText;
 
 public class fuelForm extends AppCompatActivity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        EditText GallonsRequestedEditText = (EditText) findViewById(R.id.gallonsRequested);
+        String GallonsRequested = GallonsRequestedEditText.getText().toString();
 
-    private String gallonsRequested;
+        EditText DeliveryAddressEditText = (EditText) findViewById(R.id.deliveryAddress);
+        String DeliveryAddress = DeliveryAddressEditText.getText().toString();
+        EditText DeliveryDateEditText = (EditText) findViewById(R.id.deliveryDate);
+        String DeliveryDate = DeliveryDateEditText.getText().toString();
+
+
+        EditText SuggestedPriceEditText = (EditText) findViewById(R.id.suggestedPrice);
+        String SuggestedPrice = SuggestedPriceEditText.getText().toString();
+
+        EditText TotalAmountEditText = (EditText) findViewById(R.id.totalAmount);
+        String TotalAmount = TotalAmountEditText.getText().toString();
+
+        Button SubmitForm = findViewById(R.id.SubmitForm);
+    }
+} 
+    
+    
+    
+    /* private String gallonsRequested;
     private String deliveryAddress;
     private String deliveryDate;
     private String suggestedPrice;
@@ -58,4 +82,4 @@ public class fuelForm extends AppCompatActivity {
     public void setTotalAmount(String totalAmount) {
         this.totalAmount = totalAmount;
     }
-}
+} */
