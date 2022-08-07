@@ -15,12 +15,12 @@
     <string name="col3">Delivery Date</string>
     <string name="col4">Suggested Price / gallon</string>
     <string name="col5">Total Amount Due</string>
-    <string name="row1GR">50</string>
-    <string name="row1AD">123 Apple Ave.</string>
-    <string name="row1DD">01/01/2022</string>
-    <string name="row1SP">$2500</string>
-    <string name="row1TA">$3000</string>
-    <string name="row2GR">25</string>
+    <string name="row1GR">%1$s</string>
+    <string name="row1AD">%1$s</string>
+    <string name="row1DD">%1$s</string>
+    <string name="row1SP">%1$s</string>
+    <string name="row1TA">%1$s</string>
+    <!--<string name="row2GR">25</string>
     <string name="row2AD">444 Strawberry Way</string>
     <string name="row2DD">02/22/2022</string>
     <string name="row2SP">$1500</string>
@@ -29,6 +29,6 @@
     <string name="row3AD">99 Pear St.</string>
     <string name="row3DD">11/11/2021</string>
     <string name="row3SP">$2000</string>
-    <string name="row3TA">$2750</string>
+    <string name="row3TA">$2750</string>-->
     <string name="title_activity_login">Login</string>
 </resources>

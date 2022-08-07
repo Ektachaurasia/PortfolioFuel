@@ -2,6 +2,7 @@ package com.group8.portfoliofuel;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class fuelForm extends AppCompatActivity {
     // our values from edittext fields.
     private String GallonsRequested, DeliveryAddress, DeliveryDate, SuggestedPrice, TotalAmount;
     private Button SubmitForm;
+
     // creating a variable
     // for firebasefirestore.
     private FirebaseFirestore db;
@@ -54,30 +56,13 @@ public class fuelForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 // getting data from edittext fields.
                 GallonsRequested = GallonsRequestedEdt.getText().toString();
                 DeliveryAddress = DeliveryAddressEdt.getText().toString();
                 DeliveryDate = DeliveryDateEdt.getText().toString();
                 SuggestedPrice = SuggestedPriceEdt.getText().toString();
                 TotalAmount = TotalAmountEdt.getText().toString();
-                
- /*
-                // validating the text fields if empty or not.
-                if (TextUtils.isEmpty(courseName)) {
-                    courseNameEdt.setError("Please enter Course Name");
-                } else if (TextUtils.isEmpty(courseDescription)) {
-                    courseDescriptionEdt.setError("Please enter Course Description");
-                } else if (TextUtils.isEmpty(courseDuration)) {
-courseDurationEdt.setError("Please enter Course Duration");
-                } else {
-                    // calling method to add data to Firebase Firestore.
-                    addDataToFirestore(courseName, courseDescription, courseDuration);
-                }
-            }
-        });
-    }  */
-
-             //   private void addDataToFirestore(String; GallonsRequested, String; DeliveryAddress, String; DeliveryDate, String SuggestedPrice, String TotalAmount ){
 
                     // creating a collection reference
                     // for our Firebase Firetore database.
@@ -101,7 +86,66 @@ courseDurationEdt.setError("Please enter Course Duration");
                             Toast.makeText(fuelForm.this, "Fail to add course \n" + e, Toast.LENGTH_SHORT).show();
                         }
                     });
+                //pricing module
+                findPrice();
                 }
             });
         }
+    private void findPrice() {
+        //suggested price = current + margin
+        //first initialize current price
+        double current = 1.5; //in dollars
+
+        //margin = current * (location - rate history + gal requested factor + profit)
+        //location : 0.02 for texas, 0.04 for anywhere else
+        double location = 0.04;
+        String strTexas = "Texas";
+        String strTX = "TX";
+        if (strTexas.toUpperCase().contains(DeliveryAddress.toUpperCase()) || strTX.toUpperCase().contains(DeliveryAddress.toUpperCase()))
+        {
+            location = 0.02;
+        }
+
+        //rate history : 0.01 if returning client, 0.00 if first order
+        Double rate_history = 0.0;
+        if (Double.parseDouble(TotalAmount) > 0)
+        {
+            rate_history = 0.01;
+        }
+
+        //gal requested factor : 0.02 if gal requested >= 1000, 0.03 if gal requested < 1000
+        Double galreqFactor = 0.03;
+        Double galreq  = Double.parseDouble(GallonsRequested);
+        Double GallonsRequested = galreq;
+        if (GallonsRequested >= 1000)
+        {
+            galreqFactor = 0.02;
+        }
+
+        //profit = 0.1
+        Double profit = 0.1;
+
+        //now calculate suggested price
+        double margin = current * (location - rate_history + galreqFactor + profit);
+        Double SuggestedPrice = current + margin;
+        Double TotalAmount = SuggestedPrice * GallonsRequested;
+
+        //display price quote to client's side
+        Log.i("price", "Suggested Price/gallon: " + SuggestedPrice);
+        Log.i("total", "Total Amount: " + TotalAmount);
+
+
+        //strings.xml
+        String row1GR = getString(R.string.row1GR, GallonsRequested + "");
+        Toast.makeText(getApplicationContext(), row1GR, Toast.LENGTH_LONG).show();
+        String row1AD = getString(R.string.row1GR, DeliveryAddress);
+        Toast.makeText(getApplicationContext(), row1GR, Toast.LENGTH_LONG).show();
+        String row1DD = getString(R.string.row1GR, DeliveryDate);
+        Toast.makeText(getApplicationContext(), row1GR, Toast.LENGTH_LONG).show();
+        String row1SP = getString(R.string.row1GR, "$" + SuggestedPrice);
+        Toast.makeText(getApplicationContext(), row1GR, Toast.LENGTH_LONG).show();
+        String row1TA = getString(R.string.row1GR, "$" + TotalAmount);
+        Toast.makeText(getApplicationContext(), row1GR, Toast.LENGTH_LONG).show();
     }
+
+}
