@@ -59,12 +59,27 @@
         android:layout_height="wrap_content"
         android:background="@drawable/btn_register"
         android:layout_marginTop="680dp"
-        android:text="Get Quote"/>
+        android:text="Submit"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
 />
+
+    <Button
+        android:id="@+id/GetQuote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="625dp"
+        android:background="@drawable/btn_register"
+        android:text="Get Quote" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        />
 
     </RelativeLayout>
